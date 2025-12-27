@@ -1,0 +1,30 @@
+---
+
+- name: Ensure users are present
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    state: present
+    shell: /bin/bash
+    create_home: yes
+  loop: "{{ users }}"
+  when: item.state == 'present'
+
+- name: Ensure users are absent and home removed
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    state: absent
+    remove: yes
+  loop: "{{ users }}"
+  when: item.state == 'absent'
+
+- name: Manage authorized keys for present users
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item_key }}"
+    state: present
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+  when: item.state == 'present' and item.ssh_keys is defined
+  vars:
+    item_key: "{{ item.ssh_keys | join('\n') }}"

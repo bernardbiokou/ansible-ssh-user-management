@@ -1,0 +1,14 @@
+# Change the users and SSH keys to your own.
+users:
+  - name: alice
+    state: present
+    ssh_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... alice@host"
+
+  - name: devops
+    state: present
+    ssh_keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD..."
+
+  - name: old_user
+    state: absent
