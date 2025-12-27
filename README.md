@@ -1,4 +1,4 @@
-Ansible SSH User Management
+## Ansible SSH User Management
 
 This repository demonstrates a simple and reproducible approach to managing Linux users and SSH public keys across multiple servers using Ansible.
 
