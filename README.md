@@ -91,9 +91,13 @@ If you want to run this safely in production, the Production Pack provides every
 ✅ Step-by-step production deployment guide
 
 ✅ Real-world usage patterns (SME, contractors, multiple environments)
+
 ✅ Access review & offboarding checklists
+
 ✅ Git workflow conventions for SSH access
+
 ✅ Rollback & validation strategies
+
 ✅ Common pitfalls and troubleshooting
 
 👉 Get the Production Pack here:
@@ -103,14 +107,17 @@ You keep the code. You pay for clarity, safety, and time saved.
 
 ## FAQ
 Is this production-ready out of the box?
+
 The automation works, but production requires processes, reviews, and discipline.
 That operational layer is covered in the Production Pack.
 
 Why isn’t everything documented here?
+
 This repository stays minimal and accessible.
 Detailed production guidance and real-world scenarios are packaged separately.
 
 Can I adapt this to my infrastructure?
+
 Yes. The design is intentionally simple and extensible.
 
 ## License
