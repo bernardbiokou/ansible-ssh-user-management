@@ -1,22 +1,64 @@
-## Ansible SSH User Management
+# Ansible SSH User Management
 
-This repository demonstrates a simple and reproducible approach to managing Linux users and SSH public keys across multiple servers using Ansible.
+Manage Linux SSH users and public keys **as code**, from a **single source of truth**.
 
-The goal is to replace manual SSH key management with a Git-driven, auditable, and automated workflow.
+This project helps you **standardize onboarding and offboarding** across multiple servers using Ansible - without relying on manual SSH access or ad-hoc scripts.
+
+The repository provides the **core automation logic**.  
+Production guidance, real-world usage patterns, and operational checklists are available in the **Production Pack** (paid).
+
+---
 
 ## Why this project exists
-SSH access is often managed manually:
 
-- keys copied from server to server
-- no clear view of who has access
-- former users sometimes left behind
+In many infrastructures:
+- SSH users are added manually
+- Keys stay forever
+- Access reviews are painful
+- Offboarding is risky and inconsistent
+
+This leads to:
+- security drift
+- unclear ownership
 - no audit trail
 
-## This repository shows a clean alternative:
+This project enforces **predictable, auditable SSH access management** using a simple YAML-based workflow.
 
-- one source of truth
-- consistent enforcement
-- predictable onboarding and off-boarding
+---
+
+## What you get here (Free)
+
+This repository includes:
+
+- ✔️ Centralized SSH user & key management
+- ✔️ Declarative YAML configuration
+- ✔️ Onboarding and offboarding via `present / absent`
+- ✔️ Reproducible execution across servers
+- ✔️ Git-friendly (diffs, reviews, history)
+
+This is a **minimal but solid foundation** you can test or extend.
+
+> ⚠️ This repo focuses on *automation logic*, not production operations or governance.
+
+---
+
+## Typical use cases
+
+- Solo sysadmin managing multiple servers
+- Small IT teams without DevOps
+- SMEs needing controlled SSH access
+- Consultants standardizing client environments
+
+---
+
+## Quick start
+
+```bash
+git clone https://github.com/bernardbiokou/ansible-ssh-user-management.git
+cd ansible-ssh-user-management
+ansible-playbook -i inventory/hosts.yml manage_users.yml
+```
+
 
 ## What this repository shows
 This project demonstrates:
@@ -31,70 +73,44 @@ It focuses on the technical approach, not on organizational policies.
 
 ## Project structure
 ssh-access/
-├── group_vars/
-│   └── all.yml
-├── inventory/
-│   └── hosts.yml
-├── manage_users.yml
-└── roles/
-    └── users/
-        └── tasks/
-            └── main.yml
+  group_vars/
+    all.yml        # Users and SSH keys (single source of truth)
+  inventory/
+    hosts.yml      # Target hosts
+  manage_users.yml # Main playbook
+  roles/
+    users/
+      tasks/
+        main.yml
 
-## What each part represents
-inventory/hosts.yml
-Defines the hosts managed by Ansible.
+This structure is intentionally simple and easy to audit.
 
-group_vars/all.yml
-Declares users, their desired state, and their SSH keys.
+## Production Pack (Paid)
+If you want to run this safely in production, the Production Pack provides everything that is not included here:
 
-roles/users/tasks/main.yml
-Applies the logic:
-- create users
-- remove users and home directories
-- manage authorized_keys
+✅ Step-by-step production deployment guide
+✅ Real-world usage patterns (SME, contractors, multiple environments)
+✅ Access review & offboarding checklists
+✅ Git workflow conventions for SSH access
+✅ Rollback & validation strategies
+✅ Common pitfalls and troubleshooting
 
-manage_users.yml
-Playbook orchestrating the role across all hosts.
-
-This structure can be adapted to environments of different sizes.
-
-### High-level usage
-You will need:
-
-- Ansible installed
-- SSH connectivity to your servers
-- An inventory matching your infrastructure
-
-### Typical workflow:
-- Declare users in group_vars/all.yml
-- Define hosts in inventory/hosts.yml
-- Run the playbook to enforce the desired state
-
-### How you integrate this into CI, workflows, and security processes depends on your environment.
-This repository shows the approach, not a full production playbook.
-
-Important considerations:
-- state: absent removes the user and their home directory
-- Always test in non-production environments first
-- Avoid manual user or key changes once automation is in place
-- Treat Git history as your audit trail
-- Going further: production-ready guidance
-- This repository intentionally stays minimal.
-
-If you want a step-by-step, production-ready implementation, including:
-
-- full walkthrough
-- operational and security conventions
-- onboarding and off-boarding standards
-- Git audit conventions
-- safety checklists
-- real-world usage guidance
-
-A complete Starter Pack is available here:
-
+👉 Get the Production Pack here:
 https://aloba.gumroad.com/l/ssh-user-management-ansible
 
-### Final note
-This repository is meant to be a reference implementation.
-Adapt it to your organization’s security policies and operational requirements.
+You keep the code. You pay for clarity, safety, and time saved.
+
+## FAQ
+Is this production-ready out of the box?
+The automation works, but production requires processes, reviews, and discipline.
+That operational layer is covered in the Production Pack.
+
+Why isn’t everything documented here?
+This repository stays minimal and accessible.
+Detailed production guidance and real-world scenarios are packaged separately.
+
+Can I adapt this to my infrastructure?
+Yes. The design is intentionally simple and extensible.
+
+## License
+MIT License - commercial use is allowed.
