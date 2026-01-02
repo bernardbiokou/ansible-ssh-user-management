@@ -89,6 +89,7 @@ This structure is intentionally simple and easy to audit.
 If you want to run this safely in production, the Production Pack provides everything that is not included here:
 
 ✅ Step-by-step production deployment guide
+
 ✅ Real-world usage patterns (SME, contractors, multiple environments)
 ✅ Access review & offboarding checklists
 ✅ Git workflow conventions for SSH access
